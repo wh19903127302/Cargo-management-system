@@ -1,4 +1,4 @@
-package »õÎï¹ÜÀíÓ¦ÓÃ;
+package è´§ç‰©ç®¡ç†åº”ç”¨;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,12 +9,12 @@ import javax.swing.*;
 
 
 public class OrderList {
-	private String[] title={"±àÂë","Ãû³Æ","ÊıÁ¿","µ¥¼Û"};
+	private String[] title={"ç¼–ç ","åç§°","æ•°é‡","å•ä»·"};
 	private JPanel jp=new JPanel();
     private JFrame thisjf=new JFrame();
-    JLabel orderlist = new JLabel("¶©µ¥ÁĞ±í");
+    JLabel orderlist = new JLabel("è®¢å•åˆ—è¡¨");
     private JButton[] jb;
-    private JButton jb2=new JButton("ÔöÌí¶©µ¥");
+    private JButton jb2=new JButton("å¢æ·»è®¢å•");
     private String str,str2;
     private JScrollPane pane=new JScrollPane();
     
@@ -22,18 +22,20 @@ public class OrderList {
     	int a=100;
     	int b=50;
     	jb=new JButton[num];
-    	thisjf.setTitle("¶©µ¥ÁĞ±í");
+    	thisjf.setTitle("è®¢å•åˆ—è¡¨");
     	jp.setLayout(null);
     	for(int i=0;i<num;i++){
     		jb[i]=new JButton(tablename[i]);
-    		str2=tablename[i];
-    		str="SELECT code, name,quantity,unitprice FROM "+tablename[i];
+    		//str2=tablename[i];
+    		//str="SELECT code, name,quantity,unitprice FROM "+tablename[i];
     		jb[i].setBounds(a, b, 200, 20);
     		jp.add(jb[i]);
     		jb[i].addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent e)
                 {
+			str="SELECT code, name,quantity,unitprice FROM "+((JButton)(e.getSource())).getText();
+                	str2=((JButton)(e.getSource())).getText();
                 	new ProductListFOROrder().ShowProductList(new Order().getdata(new Order().getcount2(str), str), title,str2);
                 }
             });
@@ -51,8 +53,8 @@ public class OrderList {
         {
             public void actionPerformed(ActionEvent e)
             {
-            	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//ÉèÖÃÈÕÆÚ¸ñÊ½
-            	String str="Order"+df.format(new Date());// new Date()Îª»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
+            	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//è®¾ç½®æ—¥æœŸæ ¼å¼
+            	String str="Order"+df.format(new Date());// new Date()ä¸ºè·å–å½“å‰ç³»ç»Ÿæ—¶é—´
             	new Order().creattable(str);
             	String str2="SELECT code, name,quantity,unitprice FROM "+str;
             	new ProductListFOROrder().ShowProductList(new Order().getdata(new Order().getcount2(str2), str2), title,str);
