@@ -17,6 +17,15 @@ public class OrderList {
     private JButton jb2=new JButton("增添订单");
     private String str,str2;
     private JScrollPane pane=new JScrollPane();
+	private static OrderList orderlist1;
+    private OrderList(){};
+    
+    public static OrderList getOrderList(){
+    	if(orderlist1==null){
+    		orderlist1=new OrderList();
+    	}
+    	return orderlist1;
+    }
     
     public void ShowOrderList(String[]tablename,int num){
     	int a=100;
